@@ -36,10 +36,27 @@ class ToDo{
         }
     }
 
+    changeTitle(newTitle){
+
+        if (typeof newTitle === "string"){
+            if (newTitle.length <= 30){
+                this.title = newTitle
+            }else{
+                throw new Error("Title must be 30 or less characters");
+            }
+        }else{
+            throw new Error("Title must be a string");
+        }
+    }
+
 }
 
 //FOR TESTING
 let myTodo = new ToDo("date", "description", "title1", false, "notes", "projectLink");
+
+console.log(myTodo.title);
+myTodo.changeTitle(69);
+console.log(myTodo.title);
 
 
 
