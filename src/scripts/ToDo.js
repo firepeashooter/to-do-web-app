@@ -1,14 +1,15 @@
-class ToDO{
+class ToDo{
 
     //TODO: VALIDATE THE DATA COMING INTO THIS CLASS
-    constructor(date, description, title, done, notes, project){
+    constructor(date, description, title, done, notes, project, priority=0){
 
         this.date = date;
         this.description = description;
         this.title = title;
         this.done = done;
         this.notes = notes;
-        this.project = project;     
+        this.project = project;  
+        this.priority = priority;   
         
     }
 
@@ -21,8 +22,27 @@ class ToDO{
         }
     }
 
+    changePriority(n){
+
+        if (Number.isInteger(n)){
+            if (n >= 0 && n <= 5){
+                this.priority = n;
+            }else{
+                throw new Error("Priority must be a number between 0 and 5");
+            }
+
+        }else{
+            throw new Error("Priority Must be a Number");
+        }
+    }
 
 }
+
+//FOR TESTING
+let myTodo = new ToDo("date", "description", "title1", false, "notes", "projectLink");
+
+
+
 
 
 
