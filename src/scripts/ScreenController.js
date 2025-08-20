@@ -10,9 +10,18 @@ export class ScreenController{
 
     renderProject(project){
 
-        //for each todo in project.todos
-            //call render toDo
+        const main = document.querySelector(".todo--container");
 
+        //Clear the current project
+        main.textContent = '';
+
+
+
+        for (let i = 0; i < project.todos.length; i++){
+
+            main.appendChild(this.renderTodo(project.todos[i]));
+
+        }
     }
 
     //Returns a complete ToDo Div
