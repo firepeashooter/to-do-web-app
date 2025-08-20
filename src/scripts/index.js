@@ -15,7 +15,7 @@ sidebar.addEventListener("click", (e) => {
 
         const projectID = e.target.dataset.id;
 
-         // clear all active buttons
+        //clears all active buttons
         sidebar.querySelectorAll(".project--button").forEach(b => b.classList.remove("active"));
         
 
@@ -26,6 +26,9 @@ sidebar.addEventListener("click", (e) => {
 
             myController.renderProject(project);
             e.target.classList.add("active");
+            myController.activeProject = project;
+
+            console.log(myController.activeProject.name);
             
 
         }else{
@@ -37,10 +40,25 @@ sidebar.addEventListener("click", (e) => {
     }else{
         return;
     }
-
-
-    
+  
 });
+
+//Event Delegation for Todo Object
+const container = document.querySelector(".todo--container");
+
+container.addEventListener("click", (e) => {
+
+    if(e.target.classList.contains("delete--button")){
+
+        const todoID = e.target.dataset.id;
+        myController.activeProject.deleteTodo(todoID);
+        myController.renderProject(myController.activeProject);
+
+
+
+
+    }
+})
 
 
 //For testing
@@ -61,6 +79,9 @@ let mySecondProject = new Project("Bitch");
 
 myProject.addTodo(myTodoOne);
 myProject.addTodo(myTodoTwo);
+
+console.log(`mytodo 1 id is ${myTodoOne.id}`);
+console.log(`mytodo 2 id is ${myTodoTwo.id}`);
 
 
 mySecondProject.addTodo(myTodoThree);

@@ -111,3 +111,7 @@ h3{
 .edit--button{
     background-color: lightpink;
 }
+
+.delete--button{
+    background-color: lightseagreen;
+}

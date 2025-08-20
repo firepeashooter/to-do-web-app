@@ -43,7 +43,7 @@ export class ToDo{
             throw new Error("Priority Must be a Number");
         }
 
-        this.id == crypto.randomUUID();
+        this.id = crypto.randomUUID();
         
     }
 

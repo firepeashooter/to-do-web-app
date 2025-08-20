@@ -6,6 +6,7 @@ export class ScreenController{
 
     constructor(){
         this.projects = [];
+        this.activeProject = this.projects[0];
     }
 
     
@@ -58,9 +59,15 @@ export class ScreenController{
         edit.classList.add("edit--button");
         edit.textContent = "edit";
 
+        let del = document.createElement("button");
+        del.dataset.id = todo.id;
+        del.classList.add("delete--button");
+        del.textContent = "Delete";
+
         main.appendChild(title);
         main.appendChild(description);
         main.appendChild(edit);
+        main.appendChild(del);
 
         return main;
 
