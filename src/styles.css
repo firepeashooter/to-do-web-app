@@ -71,6 +71,18 @@ h3{
 
 }
 
+.add--button{
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 3px solid black;
+
+}
+
+.add--button svg{
+    width: 4rem;
+    height: 4rem;
+    color: black;
+}
+
 .todo{
 
     display: flex;
