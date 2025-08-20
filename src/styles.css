@@ -44,6 +44,10 @@ h3{
     border-radius: 5px;
 }
 
+.active{
+    background-color: lightcoral;
+}
+
 .main{
 
     display: flex;

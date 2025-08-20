@@ -15,12 +15,18 @@ sidebar.addEventListener("click", (e) => {
 
         const projectID = e.target.dataset.id;
 
+         // clear all active buttons
+        sidebar.querySelectorAll(".project--button").forEach(b => b.classList.remove("active"));
+        
+
         //finds the project
         const project = myController.projects.find(p => p.id === projectID);
 
         if (project != undefined){
 
             myController.renderProject(project);
+            e.target.classList.add("active");
+            
 
         }else{
             throw new Error("Project not Found");
@@ -34,7 +40,7 @@ sidebar.addEventListener("click", (e) => {
 
 
     
-})
+});
 
 
 //For testing
