@@ -1,27 +1,52 @@
-import {format} from "date-fns";
+import {format, isValid} from "date-fns";
 
 class ToDo{
 
-    //TODO: VALIDATE THE DATA COMING INTO THIS CLASS
-    constructor(date, description, title, done, notes, project, priority=0){
+    constructor(dueDate, description, title, done, priority=0){
 
-        this.date = date;
-        this.description = description;
-        this.title = title;
-        this.done = done;
-        this.notes = notes;
-        this.project = project;  
-        this.priority = priority;   
+        if (isValid(dueDate)){
+            this.dueDate = dueDate;
+        }else{
+            throw new Error("due Date must be a valid date");
+        }
+
+        if (typeof description === "string"){
+            this.description = description;
+        }else{
+            throw new Error("Description must be a string");
+        }
+
+        if (typeof title === "string"){
+            if (title.length <= 30){
+                this.title = title;
+            }else{
+                throw new Error("Title must be 30 or less characters");
+            }
+        }else{
+            throw new Error("Title must be a string");
+        }
+
+        if (typeof done === "boolean"){
+            this.done = done;
+        }else{
+            throw new Error("Check must be a boolean value");
+        }
+        
+         if (Number.isInteger(priority)){
+            if (priority >= 0 && priority <= 5){
+                this.priority = priority;
+            }else{
+                throw new Error("Priority must be a number between 0 and 5");
+            }
+
+        }else{
+            throw new Error("Priority Must be a Number");
+        }
         
     }
 
     toggleCheck(){
-
-        if (this.done == true){
-            this.done = false;
-        }else{
-            this.done = true;
-        }
+        this.done = !this.done;
     }
 
     changePriority(n){
@@ -60,18 +85,34 @@ class ToDo{
         }
     }
 
+    changeDueDate(newDate){
+
+        if (isValid(newDate)){
+            this.dueDate = newDate;
+
+        }else{
+            throw new Error("Due Date must be a valid date");
+        }
+    }
+
+    getFormattedDate(){
+        return format(this.dueDate, "MM/dd/yyyy");
+    }
+
 
 }
 
 //FOR TESTING
 
-let dueDate = format(new Date(2025, 10, 3), "MM/dd/yyyy");
-let myTodo = new ToDo(dueDate, "description", "title1", false, "notes", "projectLink");
+let dueDate = new Date(2025, 2, 3);
+let newDueDate = new Date(2026, 4, 5);
+let myTodo = new ToDo(dueDate, "description", "title1", false, 5);
 
 console.log(myTodo);
-myTodo.changeDescription("Charyou tree");
+myTodo.changeDueDate(newDueDate);
 console.log(myTodo);
 
+console.log(myTodo.getFormattedDate());
 
 
 
