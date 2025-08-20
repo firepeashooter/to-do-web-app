@@ -1,3 +1,5 @@
+import {format} from "date-fns";
+
 class ToDo{
 
     //TODO: VALIDATE THE DATA COMING INTO THIS CLASS
@@ -49,14 +51,28 @@ class ToDo{
         }
     }
 
+    changeDescription(newDescription){
+
+        if (typeof newDescription === "string"){
+            this.description = newDescription;
+        }else{
+            throw new Error("Description must be a string");
+        }
+    }
+
+
 }
 
 //FOR TESTING
-let myTodo = new ToDo("date", "description", "title1", false, "notes", "projectLink");
 
-console.log(myTodo.title);
-myTodo.changeTitle(69);
-console.log(myTodo.title);
+let dueDate = format(new Date(2025, 10, 3), "MM/dd/yyyy");
+let myTodo = new ToDo(dueDate, "description", "title1", false, "notes", "projectLink");
+
+console.log(myTodo);
+myTodo.changeDescription("Charyou tree");
+console.log(myTodo);
+
+
 
 
 
