@@ -7,6 +7,19 @@ export class ScreenController{
         this.projects = [];
     }
 
+    
+    renderSidebar(){
+        const sidebar = document.querySelector(".sidebar");
+
+        for (let i = 0; i < this.projects.length; i++){
+            let projectButton = document.createElement("button");
+            projectButton.classList.add("project--button");
+            projectButton.textContent = this.projects[i].name;
+            projectButton.dataset.id = this.projects[i].id;
+            sidebar.appendChild(projectButton);
+        }
+    }
+
 
     renderProject(project){
 
@@ -14,8 +27,6 @@ export class ScreenController{
 
         //Clear the current project
         main.textContent = '';
-
-
 
         for (let i = 0; i < project.todos.length; i++){
 
