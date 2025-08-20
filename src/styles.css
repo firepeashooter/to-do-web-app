@@ -12,6 +12,14 @@ h1{
     margin-left: 40px;
 }
 
+h3{
+    margin: 0;
+    padding: 0;
+
+    padding-left: 20px;
+    padding-top: 20px;
+}
+
 
 
 .sidebar{
@@ -51,8 +59,8 @@ h1{
 
     display: grid;
 
-    grid-template-columns: repeat(auto-fill, 250px);
-    grid-auto-rows: 250px;
+    grid-template-columns: repeat(auto-fill, 350px);
+    grid-auto-rows: 350px;
     gap:20px;
 
     padding:20px;
@@ -60,8 +68,18 @@ h1{
 }
 
 .todo{
+
+    display: flex;
+    flex-direction: column;
     background-color: lightblue;
 
-    height: 250px;
-    width: 250px;
+   
+    height: 350px;
+    width: 350px;
+}
+
+.card--description{
+
+    padding:20px;
+    overflow: auto;   
 }
