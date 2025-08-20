@@ -104,18 +104,6 @@ export class ToDo{
 
 }
 
-//FOR TESTING
-
-let dueDate = new Date(2025, 2, 3);
-let newDueDate = new Date(2026, 4, 5);
-let myTodo = new ToDo(dueDate, "description", "title1", false, 5);
-
-console.log(myTodo);
-myTodo.changeDueDate(newDueDate);
-console.log(myTodo);
-
-console.log(myTodo.getFormattedDate());
-
 
 
 
