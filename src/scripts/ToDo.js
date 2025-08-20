@@ -1,6 +1,6 @@
 import {format, isValid} from "date-fns";
 
-class ToDo{
+export class ToDo{
 
     constructor(dueDate, description, title, done, priority=0){
 
@@ -42,6 +42,8 @@ class ToDo{
         }else{
             throw new Error("Priority Must be a Number");
         }
+
+        this.id == crypto.randomUUID();
         
     }
 
