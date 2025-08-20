@@ -15,11 +15,17 @@ export class Project {
         for(let i = 0; i < this.todos.length; i++){
             if (this.todos[i].id == id){
                 this.todos.splice(i, 1);
+                return;
             }
         }
+
+        throw new Error("No such ToDo item found");
+
     }
 
 }
+
+//Testing Purposes
 
 let dueDate = new Date(2025, 2, 3);
 let secondDate = new Date(2026, 4, 5);

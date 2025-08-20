@@ -1,7 +1,6 @@
 {
   "name": "template-webpack",
   "version": "1.0.0",
-  "type": "module",
   "description": "A template repo for webpack projects",
   "main": "index.js",
   "scripts": {
