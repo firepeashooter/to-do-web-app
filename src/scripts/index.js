@@ -4,6 +4,7 @@ import "../styles.css";
 import { Project } from "./Project.js";
 import { ToDo } from "./ToDo.js";
 import { ScreenController } from "./ScreenController.js";
+import { LogicController } from "./LogicController.js";
 
 
 
@@ -35,8 +36,8 @@ addProjectModal.addEventListener("click", (e) => {
             const formData = new FormData(addProjectForm);
             const data = Object.fromEntries(formData.entries());
 
-            myController.projects.push(new Project(data.name));
-            myController.refreshScreen();
+            logiController.addProject(new Project(data.name));
+            scrController.refreshScreen();
 
             addProjectForm.reset();
             addProjectModal.close();
@@ -68,8 +69,8 @@ addTodoModal.addEventListener("click", (e) =>{
 
             console.log(new Date(data.dueDate));
 
-            myController.activeProject.addTodo(new ToDo(new Date(data.dueDate), data.description, data.title, false, parseInt(data.priority)));
-            myController.refreshScreen();
+            logiController.activeProject.addTodo(new ToDo(new Date(data.dueDate), data.description, data.title, false, parseInt(data.priority)));
+            scrController.refreshScreen();
 
             addTodoForm.reset();
             addTodoModal.close();
@@ -89,7 +90,7 @@ addTodoModal.addEventListener("click", (e) =>{
 editTodoModal.addEventListener("click", (e) => {
 
     const todoID = editTodoModal.dataset.id;
-    const todo = myController.activeProject.todos.find(t => t.id === todoID);
+    const todo = logiController.activeProject.todos.find(t => t.id === todoID);
 
     if (e.target.id == "close--todo--edit"){
         editTodoForm.reset();
@@ -114,7 +115,7 @@ editTodoModal.addEventListener("click", (e) => {
             todo.changePriority(parseInt(data.priority));
             todo.changeDueDate(new Date(data.dueDate));
 
-            myController.refreshScreen();
+            scrController.refreshScreen();
 
             editTodoForm.reset();
             editTodoModal.close();
@@ -139,13 +140,13 @@ sidebar.addEventListener("click", (e) => {
         const projectID = e.target.dataset.id;
 
         //finds the project
-        const project = myController.projects.find(p => p.id === projectID);
+        const project = logiController.projects.find(p => p.id === projectID);
 
         if (project != undefined){
 
-            myController.renderProject(project);
-            myController.activeProject = project;
-            myController.refreshScreen();
+            scrController.renderProject(project);
+            logiController.activeProject = project;
+            scrController.refreshScreen();
 
         }else{
             throw new Error("Project not Found");
@@ -160,8 +161,8 @@ sidebar.addEventListener("click", (e) => {
 
         const projectID = e.target.dataset.id;
         
-        myController.deleteProject(projectID);
-        myController.refreshScreen();
+        logiController.deleteProject(projectID);
+        scrController.refreshScreen();
     }
   
 });
@@ -177,13 +178,13 @@ container.addEventListener("click", (e) => {
     if(e.target.classList.contains("delete--button")){
 
         const todoID = e.target.dataset.id;
-        myController.activeProject.deleteTodo(todoID);
-        myController.refreshScreen();
+        logiController.activeProject.deleteTodo(todoID);
+        scrController.refreshScreen();
 
     } else if (e.target.classList.contains("edit--button")){
 
         const todoID = e.target.dataset.id;
-        const todo = myController.activeProject.todos.find(t => t.id === todoID);
+        const todo = logiController.activeProject.todos.find(t => t.id === todoID);
         
 
         editTodoModal.classList.add("show");
@@ -206,7 +207,7 @@ container.addEventListener("click", (e) => {
     } else if (e.target.classList.contains("check--button")){
 
         const todoID = e.target.dataset.id;
-        const todo = myController.activeProject.todos.find(t => t.id === todoID);
+        const todo = logiController.activeProject.todos.find(t => t.id === todoID);
 
         if (todo != undefined){
 
@@ -249,15 +250,16 @@ mySecondProject.addTodo(myTodoFive);
 mySecondProject.addTodo(myTodoSix);
 
 
-const myController = new ScreenController();
+const logiController = new LogicController();
 
-myController.projects.push(myProject);
-myController.projects.push(mySecondProject);
 
-myController.activeProject = myController.projects[0];
-console.log(myController.activeProject);
+logiController.projects.push(myProject);
+logiController.projects.push(mySecondProject);
+logiController.activeProject = logiController.projects[0];
 
-myController.renderSidebar();
+const scrController = new ScreenController(logiController);
+
+scrController.renderSidebar();
 
 
 
