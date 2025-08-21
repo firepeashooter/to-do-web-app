@@ -162,6 +162,11 @@ sidebar.addEventListener("click", (e) => {
         const projectID = e.target.dataset.id;
         
         logiController.deleteProject(projectID);
+
+        //If you delete the project you are viewing redirect
+        if (logiController.activeProject.id == projectID){
+            logiController.activeProject = logiController.projects[0];
+        }
         scrController.refreshScreen();
     }
   
