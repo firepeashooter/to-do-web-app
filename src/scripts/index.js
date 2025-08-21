@@ -12,14 +12,14 @@ import { ScreenController } from "./ScreenController.js";
 const addProjectModal = document.querySelector("#add--project--modal");
 const addProjectForm = document.querySelector("#add--project--form");
 
-
-
-
 const addTodoModal = document.querySelector("#add--todo--modal");
-const addTodoForm = document.querySelector("#add--todo--form")
+const addTodoForm = document.querySelector("#add--todo--form");
+
+const editTodoModal = document.querySelector("#edit--todo--modal");
+const editTodoForm = document.querySelector("#edit--todo--form");
 
 
-
+//ADD PROJECT MODAL EVENT LISTENER
 addProjectModal.addEventListener("click", (e) => {
 
     if (e.target.id == "close--project"){
@@ -44,15 +44,14 @@ addProjectModal.addEventListener("click", (e) => {
         }else{
             return;
         }
-        
-        
-
     }else{
         return;
     }
 
 });
 
+
+//TODO MODAL EVENT LISTENER
 addTodoModal.addEventListener("click", (e) =>{
 
     if (e.target.id == "close--todo"){
@@ -72,9 +71,6 @@ addTodoModal.addEventListener("click", (e) =>{
             myController.activeProject.addTodo(new ToDo(new Date(data.dueDate), data.description, data.title, false, parseInt(data.priority)));
             myController.refreshScreen();
 
-            
-           
-
             addTodoForm.reset();
             addTodoModal.close();
             addTodoModal.classList.remove("show");
@@ -82,12 +78,52 @@ addTodoModal.addEventListener("click", (e) =>{
             return;
         }
 
-        
-
     }else{
         return;
     }
 
+});
+
+//TODO EDIT MODAL EVENT LISTENER
+
+editTodoModal.addEventListener("click", (e) => {
+
+    const todoID = editTodoModal.dataset.id;
+    const todo = myController.activeProject.todos.find(t => t.id === todoID);
+
+    if (e.target.id == "close--todo--edit"){
+        editTodoForm.reset();
+        editTodoModal.close();
+        editTodoModal.classList.remove("show");
+    } else if (e.target.id == "save--todo--edit"){
+
+        console.log("save button was pressed");
+
+        e.preventDefault();
+
+        
+
+        if (editTodoForm.checkValidity()){
+            const formData = new FormData(editTodoForm);
+            const data = Object.fromEntries(formData.entries());
+
+            console.log(new Date(data.dueDate));
+
+            todo.changeTitle(data.title);
+            todo.changeDescription(data.description);
+            todo.changePriority(parseInt(data.priority));
+            todo.changeDueDate(new Date(data.dueDate));
+
+            myController.refreshScreen();
+
+            editTodoForm.reset();
+            editTodoModal.close();
+            editTodoModal.classList.remove("show");
+        }else{
+            return;
+        }
+
+    } 
 });
 
 
@@ -141,11 +177,41 @@ container.addEventListener("click", (e) => {
         myController.refreshScreen();
 
     } else if (e.target.classList.contains("edit--button")){
-        console.log('edit button pressed');
+
+        const todoID = e.target.dataset.id;
+        const todo = myController.activeProject.todos.find(t => t.id === todoID);
+        
+
+        editTodoModal.classList.add("show");
+        editTodoModal.dataset.id = todoID;
+        editTodoModal.showModal();  
+
+        //prefill the form 
+        editTodoForm.title.value = todo.title;
+        editTodoForm.description.value = todo.description;
+        editTodoForm.dueDate.value = todo.getFormattedDate();
+        editTodoForm.priority.value = todo.priority;
+
     } else if (e.target.classList.contains("add--todo--button")){
 
         addTodoModal.classList.add("show");
         addTodoModal.showModal();  
+
+       
+
+    } else if (e.target.classList.contains("check--button")){
+
+        const todoID = e.target.dataset.id;
+        const todo = myController.activeProject.todos.find(t => t.id === todoID);
+
+        if (todo != undefined){
+
+            todo.toggleCheck();
+            console.log(todo.done);
+
+        }else{
+            throw new Error("Project not Found");
+        }
     }
 });
 

@@ -25,6 +25,10 @@ h3{
     padding-top: 20px;
 }
 
+svg{
+    pointer-events: none;
+}
+
 .form{
     display: flex;
     flex-direction: column;
@@ -158,11 +162,24 @@ h3{
 
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
     background-color: lightblue;
 
    
     height: 350px;
     width: 350px;
+}
+
+.todo--header{
+    display:flex;
+    justify-content: space-between;
+    margin-right: 20px;
+}
+
+.todo--button--container{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
 }
 
 .card--description{
@@ -171,10 +188,62 @@ h3{
     overflow: auto;   
 }
 
+.check--button{
+     background-color: lightsalmon;
+
+    height: 3rem;
+    width: 3rem;
+
+    margin:0;
+    padding:0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.check--button svg {
+    height: 1.8rem;
+    width: 1.8rem;
+
+}
+
 .edit--button{
     background-color: lightpink;
+
+    height: 3rem;
+    width: 3rem;
+
+    margin:0;
+    padding:0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.edit--button svg{
+    height: 1.8rem;
+    width: 1.8rem;
+
+    
 }
 
 .delete--button{
     background-color: lightseagreen;
+
+    height: 3rem;
+    width: 3rem;
+
+    margin:0;
+    padding:0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.delete--button svg{
+    height: 1.8rem;
+    width: 1.8rem;
 }
