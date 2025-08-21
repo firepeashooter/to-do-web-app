@@ -11,11 +11,9 @@ const sidebar = document.querySelector(".sidebar");
 
 sidebar.addEventListener("click", (e) => {
 
-    if (e.target.matches("button")){
+    if (e.target.classList.contains("project--button")){
 
         const projectID = e.target.dataset.id;
-
- 
 
         //finds the project
         const project = myController.projects.find(p => p.id === projectID);
@@ -30,7 +28,9 @@ sidebar.addEventListener("click", (e) => {
             throw new Error("Project not Found");
         }
 
-
+    }else if (e.target.classList.contains("add--project--button")){
+        myController.projects.push(new Project("New Project"));
+        myController.refreshScreen();
 
     }else{
         return;
