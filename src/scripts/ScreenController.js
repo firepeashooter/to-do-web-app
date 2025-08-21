@@ -6,18 +6,32 @@ export class ScreenController{
 
     constructor(){
         this.projects = [];
-        this.activeProject = this.projects[0];
+        this.activeProject;
     }
 
     
     renderSidebar(){
         const sidebar = document.querySelector(".sidebar");
 
+        //refresh the sidebar
+        sidebar.textContent = '';
+        
+
+        const sidebarHeader = document.createElement("h2");
+        sidebarHeader.textContent = "Projects";
+
+        sidebar.appendChild(sidebarHeader);
+
         for (let i = 0; i < this.projects.length; i++){
             let projectButton = document.createElement("button");
             projectButton.classList.add("project--button");
             projectButton.textContent = this.projects[i].name;
             projectButton.dataset.id = this.projects[i].id;
+
+            //If active project we highlight it
+            if (this.projects[i].id == this.activeProject.id){
+                projectButton.classList.add("active");
+            }
             sidebar.appendChild(projectButton);
         }
     }
@@ -70,6 +84,14 @@ export class ScreenController{
         main.appendChild(del);
 
         return main;
+
+    }
+
+    //rerenders the active project
+    refreshScreen(){
+
+        this.renderProject(this.activeProject);
+        this.renderSidebar();
 
     }
 

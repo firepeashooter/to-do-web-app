@@ -15,9 +15,7 @@ sidebar.addEventListener("click", (e) => {
 
         const projectID = e.target.dataset.id;
 
-        //clears all active buttons
-        sidebar.querySelectorAll(".project--button").forEach(b => b.classList.remove("active"));
-        
+ 
 
         //finds the project
         const project = myController.projects.find(p => p.id === projectID);
@@ -25,11 +23,8 @@ sidebar.addEventListener("click", (e) => {
         if (project != undefined){
 
             myController.renderProject(project);
-            e.target.classList.add("active");
             myController.activeProject = project;
-
-            console.log(myController.activeProject.name);
-            
+            myController.refreshScreen();
 
         }else{
             throw new Error("Project not Found");
@@ -52,13 +47,18 @@ container.addEventListener("click", (e) => {
 
         const todoID = e.target.dataset.id;
         myController.activeProject.deleteTodo(todoID);
-        myController.renderProject(myController.activeProject);
+        myController.refreshScreen();
 
+    } else if (e.target.classList.contains("edit--button")){
+        console.log('edit button pressed');
+    } else if (e.target.classList.contains("add--todo--button")){
 
-
-
+        console.log(ScreenController.activeProject);
+        myController.activeProject.addTodo(new ToDo(dueDate, "description", "title1", false, 5));
+        myController.refreshScreen();
+        
     }
-})
+});
 
 
 //For testing
@@ -94,6 +94,9 @@ const myController = new ScreenController();
 
 myController.projects.push(myProject);
 myController.projects.push(mySecondProject);
+
+myController.activeProject = myController.projects[0];
+console.log(myController.activeProject);
 
 myController.renderSidebar();
 
