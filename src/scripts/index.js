@@ -6,6 +6,49 @@ import { ToDo } from "./ToDo.js";
 import { ScreenController } from "./ScreenController.js";
 
 
+
+
+//Dialog Control
+const addProjectModal = document.querySelector("#add--project--modal");
+const addProjectButtons = document.querySelector(".modal--buttons");
+const addProjectForm = document.querySelector("#add--project--form");
+
+const saveProjectButton = document.querySelector("#save--project")
+
+saveProjectButton.addEventListener("click", (e) =>{
+
+    e.preventDefault();
+
+    if (addProjectForm.checkValidity()){
+        const formData = new FormData(addProjectForm);
+        const data = Object.fromEntries(formData.entries());
+
+        myController.projects.push(new Project(data.name));
+        myController.refreshScreen();
+    }
+
+})
+
+addProjectButtons.addEventListener("click", (e) => {
+
+    if (e.target.id == "close--project"){
+        addProjectForm.reset();
+        addProjectModal.close();
+        addProjectModal.classList.remove("show");
+
+    }else if (e.target.id == "save--project"){
+        
+        addProjectForm.reset();
+        addProjectModal.close();
+        addProjectModal.classList.remove("show");
+
+    }else{
+        return
+    }
+
+})
+
+
 //Event Delegation for sidebar
 const sidebar = document.querySelector(".sidebar");
 
@@ -29,8 +72,9 @@ sidebar.addEventListener("click", (e) => {
         }
 
     }else if (e.target.classList.contains("add--project--button")){
-        myController.projects.push(new Project("New Project"));
-        myController.refreshScreen();
+        
+        addProjectModal.classList.add("show");
+        addProjectModal.showModal();
 
     }else{
         return;
