@@ -191,6 +191,10 @@ svg{
     width: 350px;
 }
 
+.highlight{
+    border: 5px solid green;
+}
+
 .todo--header{
     display:flex;
     justify-content: space-between;

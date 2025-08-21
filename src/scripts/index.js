@@ -208,11 +208,12 @@ container.addEventListener("click", (e) => {
 
         const todoID = e.target.dataset.id;
         const todo = logiController.activeProject.todos.find(t => t.id === todoID);
+        const todoDiv = e.target.closest(".todo");
 
         if (todo != undefined){
 
             todo.toggleCheck();
-            console.log(todo.done);
+            todoDiv.classList.toggle("highlight");
 
         }else{
             throw new Error("Project not Found");
@@ -259,7 +260,7 @@ logiController.activeProject = logiController.projects[0];
 
 const scrController = new ScreenController(logiController);
 
-scrController.renderSidebar();
+scrController.initialRender();
 
 
 

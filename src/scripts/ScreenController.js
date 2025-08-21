@@ -9,6 +9,11 @@ export class ScreenController{
         this.controller = controller;
     }
 
+    initialRender(){
+        this.renderSidebar();
+        this.renderProject(this.controller.projects[0]);
+    }
+
     
     renderSidebar(){
         const sidebar = document.querySelector(".sidebar");
