@@ -10,26 +10,17 @@ import { ScreenController } from "./ScreenController.js";
 
 //Dialog Control
 const addProjectModal = document.querySelector("#add--project--modal");
-const addProjectButtons = document.querySelector(".modal--buttons");
 const addProjectForm = document.querySelector("#add--project--form");
 
-const saveProjectButton = document.querySelector("#save--project")
 
-saveProjectButton.addEventListener("click", (e) =>{
 
-    e.preventDefault();
 
-    if (addProjectForm.checkValidity()){
-        const formData = new FormData(addProjectForm);
-        const data = Object.fromEntries(formData.entries());
+const addTodoModal = document.querySelector("#add--todo--modal");
+const addTodoForm = document.querySelector("#add--todo--form")
 
-        myController.projects.push(new Project(data.name));
-        myController.refreshScreen();
-    }
 
-})
 
-addProjectButtons.addEventListener("click", (e) => {
+addProjectModal.addEventListener("click", (e) => {
 
     if (e.target.id == "close--project"){
         addProjectForm.reset();
@@ -37,16 +28,69 @@ addProjectButtons.addEventListener("click", (e) => {
         addProjectModal.classList.remove("show");
 
     }else if (e.target.id == "save--project"){
+
+        e.preventDefault();
+
+        if (addProjectForm.checkValidity()){
+            const formData = new FormData(addProjectForm);
+            const data = Object.fromEntries(formData.entries());
+
+            myController.projects.push(new Project(data.name));
+            myController.refreshScreen();
+
+            addProjectForm.reset();
+            addProjectModal.close();
+            addProjectModal.classList.remove("show");
+        }else{
+            return;
+        }
         
-        addProjectForm.reset();
-        addProjectModal.close();
-        addProjectModal.classList.remove("show");
+        
 
     }else{
-        return
+        return;
     }
 
-})
+});
+
+addTodoModal.addEventListener("click", (e) =>{
+
+    if (e.target.id == "close--todo"){
+        addTodoForm.reset();
+        addTodoModal.close();
+        addTodoModal.classList.remove("show");
+    } else if (e.target.id == "save--todo"){
+
+        e.preventDefault();
+
+        if (addTodoForm.checkValidity()){
+            const formData = new FormData(addTodoForm);
+            const data = Object.fromEntries(formData.entries());
+
+            console.log(new Date(data.dueDate));
+
+            myController.activeProject.addTodo(new ToDo(new Date(data.dueDate), data.description, data.title, false, parseInt(data.priority)));
+            myController.refreshScreen();
+
+            
+           
+
+            addTodoForm.reset();
+            addTodoModal.close();
+            addTodoModal.classList.remove("show");
+        }else{
+            return;
+        }
+
+        
+
+    }else{
+        return;
+    }
+
+});
+
+
 
 
 //Event Delegation for sidebar
@@ -82,6 +126,9 @@ sidebar.addEventListener("click", (e) => {
   
 });
 
+
+
+
 //Event Delegation for Todo Object
 const container = document.querySelector(".todo--container");
 
@@ -97,10 +144,8 @@ container.addEventListener("click", (e) => {
         console.log('edit button pressed');
     } else if (e.target.classList.contains("add--todo--button")){
 
-        console.log(ScreenController.activeProject);
-        myController.activeProject.addTodo(new ToDo(dueDate, "description", "title1", false, 5));
-        myController.refreshScreen();
-        
+        addTodoModal.classList.add("show");
+        addTodoModal.showModal();  
     }
 });
 
