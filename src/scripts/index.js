@@ -156,8 +156,12 @@ sidebar.addEventListener("click", (e) => {
         addProjectModal.classList.add("show");
         addProjectModal.showModal();
 
-    }else{
-        return;
+    }else if (e.target.classList.contains("delete--project--button")){
+
+        const projectID = e.target.dataset.id;
+        
+        myController.deleteProject(projectID);
+        myController.refreshScreen();
     }
   
 });

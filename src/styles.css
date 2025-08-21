@@ -51,7 +51,7 @@ svg{
 }
 
 .project--button{
-    width: 80%;
+    flex:3;
     height: 2rem;
     border:none;
     margin:1rem;
@@ -84,6 +84,27 @@ svg{
     width: 1rem;
     height: 1rem;
     color: black;
+}
+
+.project--div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    width:90%
+}
+
+.delete--project--button{
+    height: 2rem;
+    width: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.delete--project--button svg{
+    height: 1rem;
+    width: 1rem;
 }
 
 .modal{
