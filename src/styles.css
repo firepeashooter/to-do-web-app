@@ -45,6 +45,7 @@ svg{
     flex:0.25;
     background-color: lightgreen;
     min-width: 300px;
+    padding-top: 15px;
 
     overflow: auto;
     
