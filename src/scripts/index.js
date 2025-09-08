@@ -70,6 +70,9 @@ addTodoModal.addEventListener("click", (e) =>{
             console.log(new Date(data.dueDate));
 
             logiController.activeProject.addTodo(new ToDo(new Date(data.dueDate), data.description, data.title, false, parseInt(data.priority)));
+
+            //refresh screen and storage
+            logiController.refreshStorage();
             scrController.refreshScreen();
 
             addTodoForm.reset();
@@ -115,7 +118,10 @@ editTodoModal.addEventListener("click", (e) => {
             todo.changePriority(parseInt(data.priority));
             todo.changeDueDate(new Date(data.dueDate));
 
+            //Refresh Screen and Storage
             scrController.refreshScreen();
+            logiController.refreshStorage();
+
 
             editTodoForm.reset();
             editTodoModal.close();
@@ -227,45 +233,26 @@ container.addEventListener("click", (e) => {
 });
 
 
-//For testing
-
-
-let dueDate = new Date(2025, 2, 3);
-let secondDate = new Date(2026, 4, 5);
-let myTodoOne = new ToDo(dueDate, "description", "title1", false, 5);
-let myTodoTwo = new ToDo(secondDate, "seconddescription", "title1", false, 5);
-
-let myTodoThree = new ToDo(new Date(2001, 5, 7), "description of new card", "title1", false, 5);
-let myTodoFour = new ToDo(new Date(2004, 5, 7), "seconddescription of new card", "title2", false, 5);
-let myTodoFive = new ToDo(new Date(2003, 2, 8), "description of third card", "title3", false, 5);
-let myTodoSix = new ToDo(new Date(2017, 7, 7), "seconddescription of third card", "title4", false, 5);
-
-let myProject = new Project("Main");
-let mySecondProject = new Project("Bitch");
-
-myProject.addTodo(myTodoOne);
-myProject.addTodo(myTodoTwo);
-
-console.log(`mytodo 1 id is ${myTodoOne.id}`);
-console.log(`mytodo 2 id is ${myTodoTwo.id}`);
-
-
-mySecondProject.addTodo(myTodoThree);
-mySecondProject.addTodo(myTodoFour);
-mySecondProject.addTodo(myTodoFive);
-mySecondProject.addTodo(myTodoSix);
-
 
 const logiController = new LogicController();
 
 
-logiController.projects.push(myProject);
-logiController.projects.push(mySecondProject);
+
 logiController.activeProject = logiController.projects[0];
 
 const scrController = new ScreenController(logiController);
 
+console.log(scrController.activeProject);
+
+
 scrController.initialRender();
+
+
+
+
+
+
+
 
 
 
