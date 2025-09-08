@@ -30,6 +30,7 @@ export class LogicController{
 
                 let project = new Project(projectData.name);
                 project.todos = todos;
+                project.id = projectData.id;
 
                 this.projects.push(project);
 
