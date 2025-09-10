@@ -135,6 +135,13 @@ svg{
     display: flex;
 }
 
+.modal--button{
+    margin-right: 10px;
+    margin-left: 10px;
+    height: 2rem;
+    width: 4rem;
+}
+
 ::backdrop{
     background-color: rgba(0,0,0, 0.5);
 }
