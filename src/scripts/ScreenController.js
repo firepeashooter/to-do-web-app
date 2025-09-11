@@ -31,11 +31,11 @@ export class ScreenController{
         sidebar.textContent = '';
         
         const sidebarHeader = document.createElement("h2");
+        sidebarHeader.classList.add("sidebar--header")
         sidebarHeader.textContent = "Projects";
 
         sidebar.appendChild(sidebarHeader);
-        console.log(this.controller.projects.length);
-        console.log(this.controller.projects);
+        
 
         //Renders all project buttons if there are projects in the project array
 
@@ -119,7 +119,6 @@ export class ScreenController{
 
         let footer = document.createElement("div");
         footer.classList.add("todo--footer");
-
 
         let title = document.createElement("h3");
         title.textContent = todo.title;

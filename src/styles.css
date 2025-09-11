@@ -84,12 +84,20 @@ form{
     align-items: center;
 
     flex:0.25;
-    background-color: lightgreen;
+    background-color: #1E1E2F;
     min-width: 300px;
     padding-top: 15px;
 
     overflow: auto;
-    
+   
+}
+
+.sidebar--header{
+    color:whitesmoke;
+}
+
+.main--header{
+    color:whitesmoke;
 }
 
 .project--button{
@@ -99,6 +107,13 @@ form{
     margin:1rem;
     padding:0.5rem;
     border-radius: 5px;
+    font-weight: 500;
+    background-color: #1E1E2F;
+    color: whitesmoke;
+}
+
+.project--button:hover{
+    filter: brightness(85%);
 }
 
 #add--project--modal{
@@ -214,7 +229,7 @@ form{
 }
 
 .active{
-    background-color: lightcoral;
+    filter: brightness(65%);
 }
 
 .main{
@@ -223,7 +238,9 @@ form{
     flex-direction: column;
 
     flex:1;
-    background-color: orange;
+    background-image: url('./images/black-felt.png'), linear-gradient(to bottom, #121212 0%, #1C1C2E 50%, #24243F 100%);;
+    background-repeat: repeat;
+
 }
 
 
@@ -312,8 +329,8 @@ form{
 
 .todo--ellipsis--menu{
     position: absolute; /* dropdown is positioned relative to .todo */
-    bottom: 300px; /* adjust as needed to appear below the button */
-    left: 300px; /* align to the right of the todo item */
+    bottom: 330px; /* adjust as needed to appear below the button */
+    left: 250px; /* align to the right of the todo item */
     display: none; /* hidden by default */
     background-color: white;
     border: 1px solid #ccc;
