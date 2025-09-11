@@ -1,6 +1,4 @@
 import "../styles.css";
-
-
 import { Project } from "./Project.js";
 import { ToDo } from "./ToDo.js";
 import { ScreenController } from "./ScreenController.js";
@@ -89,7 +87,6 @@ addTodoModal.addEventListener("click", (e) =>{
 });
 
 //TODO EDIT MODAL EVENT LISTENER
-
 editTodoModal.addEventListener("click", (e) => {
 
     const todoID = editTodoModal.dataset.id;
@@ -104,8 +101,6 @@ editTodoModal.addEventListener("click", (e) => {
         console.log("save button was pressed");
 
         e.preventDefault();
-
-        
 
         if (editTodoForm.checkValidity()){
             const formData = new FormData(editTodoForm);
@@ -235,16 +230,7 @@ container.addEventListener("click", (e) => {
 
 
 const logiController = new LogicController();
-
-
-
-logiController.activeProject = logiController.projects[0];
-
 const scrController = new ScreenController(logiController);
-
-console.log(scrController.activeProject);
-
-
 scrController.initialRender();
 
 

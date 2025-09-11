@@ -18,12 +18,8 @@ export class LogicController{
 
                 const projectData = JSON.parse(localStorage.getItem(key));
 
-                console.log(projectData);
-
-
                 //Converting todos back from JSON (JSON returns a raw object not a todo)
                 const todos = projectData.todos.map(t => {
-                    
                     const due = new Date(t.dueDate);
                     return new ToDo(due, t.description, t.title, t.done, t.priority)
                 });
@@ -33,11 +29,11 @@ export class LogicController{
                 project.id = projectData.id;
 
                 this.projects.push(project);
-
             }
         }
 
     }
+
 
     deleteProject(projectID){
         for(let i = 0; i < this.projects.length; i++){
@@ -51,10 +47,12 @@ export class LogicController{
         throw new Error("No such Project found");
     }
 
+
     addProject(project){
         this.projects.push(project);
         this.refreshStorage();
     }
+
 
     //save project (to localStorage)
     saveProject(project){
@@ -62,22 +60,13 @@ export class LogicController{
         localStorage.setItem(`project:${project.id}`, projectData);
     }
 
-    //Function to add all projects to local storage and update existing ones
+    //After a todo or project is added, save every project to localStorage
     refreshStorage(){
         
         for (let i = 0; i < this.projects.length; i++){
             this.saveProject(this.projects[i]);
         }
     }
-
-    //for debugging
-    clearStorage(){
-        localStorage.clear();
-    }
-
-
-   
-
 
     //Operations on the projects like sorting them could go here in future
 }
