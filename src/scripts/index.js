@@ -186,6 +186,8 @@ container.addEventListener("click", (e) => {
 
         const todoID = e.target.dataset.id;
         logiController.activeProject.deleteTodo(todoID);
+
+        console.log(logiController.activeProject);
         scrController.refreshScreen();
 
     } else if (e.target.id === "edit--button"){

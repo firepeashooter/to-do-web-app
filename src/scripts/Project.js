@@ -16,6 +16,7 @@ export class Project {
         for(let i = 0; i < this.todos.length; i++){
             if (this.todos[i].id == id){
                 this.todos.splice(i, 1);
+                console.log("todo deleted");
                 return;
             }
         }

@@ -113,6 +113,14 @@ export class ScreenController{
         let header = document.createElement("div");
         header.classList.add("todo--header");
 
+        let description = document.createElement("div");
+        description.classList.add("todo--description");
+        description.textContent = todo.description;
+
+        let footer = document.createElement("div");
+        footer.classList.add("todo--footer");
+
+
         let title = document.createElement("h3");
         title.textContent = todo.title;
 
@@ -149,9 +157,12 @@ export class ScreenController{
         
         header.appendChild(title);
         header.appendChild(menuButton);
+
+        footer.appendChild(dueDate);
         
         main.appendChild(header);
-        main.appendChild(dueDate);
+        main.appendChild(description);
+        main.appendChild(footer);
         
         
         menu.appendChild(edit);
@@ -175,6 +186,7 @@ export class ScreenController{
             this.renderProject(this.controller.activeProject);
         }
         
+        this.controller.refreshStorage();
         this.renderSidebar();
 
     }

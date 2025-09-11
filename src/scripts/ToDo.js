@@ -17,7 +17,7 @@ export class ToDo{
         }
 
         if (typeof title === "string"){
-            if (title.length <= 30){
+            if (title.length <= 100){
                 this.title = title;
             }else{
                 throw new Error("Title must be 30 or less characters");

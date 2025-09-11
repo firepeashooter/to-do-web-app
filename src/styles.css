@@ -23,8 +23,7 @@ h3{
     margin: 0;
     padding: 0;
 
-    padding-left: 20px;
-    padding-top: 20px;
+    
 }
 
 svg{
@@ -271,7 +270,7 @@ form{
     position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
     background-color: lightblue;
 
    
@@ -284,12 +283,20 @@ form{
     border: 5px solid green;
 }
 
-.todo--header{
+.todo--header, .todo--footer{
     display:flex;
     justify-content: space-between;
     align-items: center;
-    margin-right: 20px;
+    padding: 20px;
 }
+
+.todo--description{
+    flex: 1;
+    overflow: auto;
+    padding: 20px;
+}
+
+
 
 .todo--ellipsis--menu--button{
     border: none;
