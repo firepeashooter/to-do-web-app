@@ -268,6 +268,7 @@ form{
 
 .todo{
 
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -276,6 +277,7 @@ form{
    
     height: 350px;
     width: 350px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.5);
 }
 
 .highlight{
@@ -285,7 +287,38 @@ form{
 .todo--header{
     display:flex;
     justify-content: space-between;
+    align-items: center;
     margin-right: 20px;
+}
+
+.todo--ellipsis--menu--button{
+    border: none;
+    background: lightblue;
+    width: 50px;
+    cursor: pointer;
+
+}
+
+.todo--ellipsis--menu--button:hover{
+    filter: brightness(85%);
+}
+
+.todo--ellipsis--menu{
+    position: absolute; /* dropdown is positioned relative to .todo */
+    bottom: 300px; /* adjust as needed to appear below the button */
+    left: 300px; /* align to the right of the todo item */
+    display: none; /* hidden by default */
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    z-index: 100;
+    padding: 5px;
+}
+
+.todo--ellipsis--menu.show{
+    display:flex;
+    flex-direction: column;
 }
 
 .todo--button--container{
@@ -300,62 +333,8 @@ form{
     overflow: auto;   
 }
 
-.check--button{
-     background-color: lightsalmon;
-
-    height: 3rem;
-    width: 3rem;
-
-    margin:0;
-    padding:0;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.check--button svg {
-    height: 1.8rem;
-    width: 1.8rem;
-
-}
-
-.edit--button{
-    background-color: lightpink;
-
-    height: 3rem;
-    width: 3rem;
-
-    margin:0;
-    padding:0;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.edit--button svg{
-    height: 1.8rem;
-    width: 1.8rem;
-
-    
-}
-
-.delete--button{
-    background-color: lightseagreen;
-
-    height: 3rem;
-    width: 3rem;
-
-    margin:0;
-    padding:0;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.delete--button svg{
-    height: 1.8rem;
-    width: 1.8rem;
+.dropdown--button{
+    border: none;
+    border-radius: 2px;
+    margin:2px;
 }

@@ -18,6 +18,7 @@ const editTodoModal = document.querySelector("#edit--todo--modal");
 const editTodoForm = document.querySelector("#edit--todo--form");
 
 
+
 //ADD PROJECT MODAL EVENT LISTENER
 addProjectModal.addEventListener("click", (e) => {
 
@@ -181,13 +182,13 @@ const container = document.querySelector(".todo--container");
 
 container.addEventListener("click", (e) => {
 
-    if(e.target.classList.contains("delete--button")){
+    if(e.target.id === "delete--button"){
 
         const todoID = e.target.dataset.id;
         logiController.activeProject.deleteTodo(todoID);
         scrController.refreshScreen();
 
-    } else if (e.target.classList.contains("edit--button")){
+    } else if (e.target.id === "edit--button"){
 
         const todoID = e.target.dataset.id;
         const todo = logiController.activeProject.todos.find(t => t.id === todoID);
@@ -210,7 +211,7 @@ container.addEventListener("click", (e) => {
 
        
 
-    } else if (e.target.classList.contains("check--button")){
+    } else if (e.target.id === "check--button"){
 
         const todoID = e.target.dataset.id;
         const todo = logiController.activeProject.todos.find(t => t.id === todoID);
@@ -224,6 +225,13 @@ container.addEventListener("click", (e) => {
         }else{
             throw new Error("Project not Found");
         }
+    } else if (e.target.classList.contains("todo--ellipsis--menu--button")){
+
+        const todoItem = e.target.closest(".todo");
+        
+        const ellipsisMenu = todoItem.querySelector(".todo--ellipsis--menu");
+
+        ellipsisMenu.classList.toggle("show");
     }
 });
 
