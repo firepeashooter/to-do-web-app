@@ -1,3 +1,9 @@
+:root{
+    --main-bg: #44444E;
+    --secondary: #37353E;
+    --todo: #FF9B3C;
+}
+
 body{
     display: flex;
     margin:0;
@@ -84,7 +90,7 @@ form{
     align-items: center;
 
     flex:0.25;
-    background-color: #1E1E2F;
+    background-color: var(--secondary);
     min-width: 300px;
     padding-top: 15px;
 
@@ -94,6 +100,7 @@ form{
 
 .sidebar--header{
     color:whitesmoke;
+    margin-bottom: 20px;
 }
 
 .main--header{
@@ -102,14 +109,15 @@ form{
 
 .project--button{
     flex:3;
-    height: 2rem;
+    height: 2.5rem;
     border:none;
-    margin:1rem;
+    margin:10px;
     padding:0.5rem;
     border-radius: 5px;
     font-weight: 500;
-    background-color: #1E1E2F;
+    background-color: var(--secondary);
     color: whitesmoke;
+    border: 2px solid black;
 }
 
 .project--button:hover{
@@ -168,7 +176,11 @@ form{
     display: flex;
     justify-content: center;
     align-items: center;
+    border: 1px solid black;
+    border-radius: 3px;
+    background-color: rgba(255, 255, 255, 0.3);
 }
+
 
 .delete--project--button svg{
     height: 1rem;
@@ -200,7 +212,7 @@ form{
 
     border: none;
     border-radius: 5px;
-    color: white;
+    color: black;
     font-weight: 600;
     margin-right: 10px;
     margin-left: 10px;
@@ -238,8 +250,7 @@ form{
     flex-direction: column;
 
     flex:1;
-    background-image: url('./images/black-felt.png'), linear-gradient(to bottom, #121212 0%, #1C1C2E 50%, #24243F 100%);;
-    background-repeat: repeat;
+    background-color: var(--main-bg);
 
 }
 
@@ -260,6 +271,8 @@ form{
     border-radius: 20px;
     width: 500px;
     height: 400px;
+    background-color: var(--main-bg);
+    color:whitesmoke;
 }
 
 .add--todo--button{
@@ -288,7 +301,7 @@ form{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background-color: lightblue;
+    background-color: var(--todo);
 
    
     height: 350px;
@@ -317,7 +330,7 @@ form{
 
 .todo--ellipsis--menu--button{
     border: none;
-    background: lightblue;
+    background: var(--todo);
     width: 50px;
     cursor: pointer;
 
@@ -328,10 +341,10 @@ form{
 }
 
 .todo--ellipsis--menu{
-    position: absolute; /* dropdown is positioned relative to .todo */
-    bottom: 330px; /* adjust as needed to appear below the button */
-    left: 250px; /* align to the right of the todo item */
-    display: none; /* hidden by default */
+    position: absolute; 
+    bottom: 330px; 
+    left: 250px; 
+    display: none; 
     background-color: white;
     border: 1px solid #ccc;
     border-radius: 6px;
